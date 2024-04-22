@@ -31,7 +31,8 @@ def controller_get_average_aqi():  # noqa: E501
 
     :rtype: Union[Aqi, Tuple[Aqi, int], Tuple[Aqi, int, Dict[str, str]]
     """
-    return 'do some magic!'
+    result = Aqi(pool.get_average_aqi())
+    return result
 
 
 def controller_get_average_humidity():  # noqa: E501
@@ -42,7 +43,8 @@ def controller_get_average_humidity():  # noqa: E501
 
     :rtype: Union[Humidity, Tuple[Humidity, int], Tuple[Humidity, int, Dict[str, str]]
     """
-    return 'do some magic!'
+    result = Humidity(pool.get_average_hum())
+    return result
 
 
 def controller_get_average_pm10():  # noqa: E501
@@ -53,7 +55,8 @@ def controller_get_average_pm10():  # noqa: E501
 
     :rtype: Union[Pm10, Tuple[Pm10, int], Tuple[Pm10, int, Dict[str, str]]
     """
-    return 'do some magic!'
+    result = Pm10(pool.get_average_pm10())
+    return result
 
 
 def controller_get_average_pm25():  # noqa: E501
@@ -64,7 +67,8 @@ def controller_get_average_pm25():  # noqa: E501
 
     :rtype: Union[Pm25, Tuple[Pm25, int], Tuple[Pm25, int, Dict[str, str]]
     """
-    return 'do some magic!'
+    result = Pm25(pool.get_average_pm25())
+    return result
 
 
 def controller_get_average_temp():  # noqa: E501
