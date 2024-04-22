@@ -9,18 +9,18 @@ from swagger_server.models.humidity import Humidity  # noqa: E501
 from swagger_server.models.pm10 import Pm10  # noqa: E501
 from swagger_server.models.pm25 import Pm25  # noqa: E501
 from swagger_server.models.temperature import Temperature  # noqa: E501
-from swagger_server import util
+from swagger_server import util, database_util
 
+pool = database_util.DataBase()
 
 def controller_get_average_all():  # noqa: E501
     """Return the average temperature, humidity, aqi, pm10 and pm25 when allergy flare-ups happened.
 
      # noqa: E501
 
-
     :rtype: Union[All, Tuple[All, int], Tuple[All, int, Dict[str, str]]
     """
-    return 'do some magic!'
+    return "temp"
 
 
 def controller_get_average_aqi():  # noqa: E501
@@ -75,4 +75,5 @@ def controller_get_average_temp():  # noqa: E501
 
     :rtype: Union[Temperature, Tuple[Temperature, int], Tuple[Temperature, int, Dict[str, str]]
     """
-    return 'do some magic!'
+    result = Temperature(pool.get_average_temp())
+    return result
