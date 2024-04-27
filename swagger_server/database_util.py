@@ -55,67 +55,75 @@ class DataBase:
     def get_average_aqi(self):
         with self.pool.connection() as conn, conn.cursor() as cs:
             cs.execute("""
-            SELECT AVG(aqi)
-            FROM (SELECT DATE(ts) as date, aqi
-                  FROM pro_aqi
-                  WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
-                 ) AS `date_aqi`
-            INNER JOIN (
+            SELECT avg(avg_aqi)
+            from (
                 SELECT DISTINCT date, fare_up
-                from pro_fare_up
-                where fare_up = TRUE
-            ) AS fare_up ON fare_up.date = date_aqi.date
-            GROUP BY fare_up.fare_up;
+                FROM pro_fare_up
+                WHERE fare_up = TRUE) AS uqi_fare_up
+            INNER JOIN (
+                SELECT DATE(ts) as date, AVG(aqi) as avg_aqi
+                FROM pro_aqi
+                WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
+                GROUP BY date
+            ) AS date_avg_aqi ON date_avg_aqi.date = uqi_fare_up.date
+            GROUP BY uqi_fare_up.fare_up;
             """)
             return cs.fetchone()[0]
 
     def get_average_pm10(self):
         with self.pool.connection() as conn, conn.cursor() as cs:
             cs.execute("""
-            SELECT AVG(pm10)
-            FROM (SELECT DATE(ts) as date, pm10
-                  FROM pro_aqi
-                  WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
-                 ) AS `date_aqi`
-            INNER JOIN (
+            SELECT avg(avg_pm10)
+            from (
                 SELECT DISTINCT date, fare_up
-                from pro_fare_up
-                where fare_up = TRUE
-            ) AS fare_up ON fare_up.date = date_aqi.date
-            GROUP BY fare_up.fare_up;
+                FROM pro_fare_up
+                WHERE fare_up = TRUE) AS uqi_fare_up
+            INNER JOIN (
+                SELECT DATE(ts) as date, AVG(pm10) as avg_pm10
+                FROM pro_aqi
+                WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
+                GROUP BY date
+            ) AS date_avg_pm10 ON date_avg_pm10.date = uqi_fare_up.date
+            GROUP BY uqi_fare_up.fare_up;
             """)
             return cs.fetchone()[0]
 
     def get_average_pm25(self):
         with self.pool.connection() as conn, conn.cursor() as cs:
             cs.execute("""
-            SELECT AVG(pm25)
-            FROM (SELECT DATE(ts) as date, pm25
-                  FROM pro_aqi
-                  WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
-                 ) AS `date_aqi`
-            INNER JOIN (
+            SELECT avg(avg_pm25)
+            from (
                 SELECT DISTINCT date, fare_up
-                from pro_fare_up
-                where fare_up = TRUE
-            ) AS fare_up ON fare_up.date = date_aqi.date
-            GROUP BY fare_up.fare_up;
+                FROM pro_fare_up
+                WHERE fare_up = TRUE) AS uqi_fare_up
+            INNER JOIN (
+                SELECT DATE(ts) as date, AVG(pm25) as avg_pm25
+                FROM pro_aqi
+                WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
+                GROUP BY date
+            ) AS date_avg_pm25 ON date_avg_pm25.date = uqi_fare_up.date
+            GROUP BY uqi_fare_up.fare_up;
             """)
             return cs.fetchone()[0]
 
     def get_average_all(self):
         with self.pool.connection() as conn, conn.cursor() as cs:
             cs.execute("""
-            SELECT AVG(pm25), AVG(pm10), AVG(aqi)
-            FROM (SELECT DATE(ts) as date, pm25, pm10, aqi
-                  FROM pro_aqi
-                  WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
-                 ) AS `date_aqi`
+            SELECT avg(avg_aqi), avg(avg_pm10), avg(avg_pm25), avg(avg_temp), avg(avg_humid)
+            FROM (SELECT DISTINCT date, fare_up
+                FROM pro_fare_up
+                WHERE fare_up = TRUE) AS uqi_fare_up
             INNER JOIN (
-                SELECT DISTINCT date, fare_up
-                from pro_fare_up
-                where fare_up = TRUE
-            ) AS fare_up ON fare_up.date = date_aqi.date
-            GROUP BY fare_up.fare_up;
+                SELECT DATE(ts) as date, AVG(aqi) as avg_aqi, AVG(pm10) as avg_pm10, AVG(pm25) as avg_pm25
+                FROM pro_aqi
+                WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
+                GROUP BY date
+            ) AS date_avg_aqi ON date_avg_aqi.date = uqi_fare_up.date
+            INNER JOIN (
+                SELECT DATE(ts) as date, AVG(temperature) as avg_temp, AVG(humidity) as avg_humid
+                FROM pro_temp_humid
+                WHERE HOUR(ts) >= 4 AND HOUR(ts) < 8
+                GROUP BY date
+            ) AS date_avg_temp ON date_avg_temp.date = uqi_fare_up.date
+            GROUP BY uqi_fare_up.fare_up;
             """)
-            print(cs.fetchone())

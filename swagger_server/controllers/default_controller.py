@@ -20,6 +20,7 @@ def controller_get_average_all():  # noqa: E501
 
     :rtype: Union[All, Tuple[All, int], Tuple[All, int, Dict[str, str]]
     """
+    result = pool.get_average_all()
     return "temp"
 
 
