@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  description: Test Test
+  title: Test Test
+  version: 1.0.0
+servers:
+- url: /allergic-api/v1
+paths:
+  /average_all:
+    get:
+      operationId: controller_get_average_all
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/All'
+          description: Success
+      summary: "Return the average temperature, humidity, aqi, pm10 and pm25 when\
+        \ allergy flare-ups happened."
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /average_aqi:
+    get:
+      operationId: controller_get_average_aqi
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aqi'
+          description: Success
+      summary: Return the average qai when allergy flare-ups happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /average_humid:
+    get:
+      operationId: controller_get_average_humidity
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Humidity'
+          description: Success
+      summary: Return the average humidity when allergy flare-ups happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /average_pm10:
+    get:
+      operationId: controller_get_average_pm10
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm10'
+          description: Success
+      summary: Return the average pm10 when allergy flare-ups happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /average_pm25:
+    get:
+      operationId: controller_get_average_pm25
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm25'
+          description: Success
+      summary: Return the average pm25 when allergy flare-ups happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /average_temp:
+    get:
+      operationId: controller_get_average_temp
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+          description: Success
+      summary: Return the average temperature when allergy flare-ups happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+components:
+  schemas:
+    Temperature:
+      example:
+        temperature: 30
+      properties:
+        temperature:
+          title: temperature
+          type: number
+      title: Temperature
+      type: object
+    Humidity:
+      example:
+        humidity: 70
+      properties:
+        humidity:
+          title: humidity
+          type: integer
+      title: Humidity
+      type: object
+    Aqi:
+      example:
+        aqi: 90
+      properties:
+        aqi:
+          title: aqi
+          type: integer
+      title: Aqi
+      type: object
+    Pm10:
+      example:
+        pm10: 80
+      properties:
+        pm10:
+          title: pm10
+          type: integer
+      title: Pm10
+      type: object
+    Pm25:
+      example:
+        pm25: 159
+      properties:
+        pm25:
+          title: pm25
+          type: integer
+      title: Pm25
+      type: object
+    All:
+      allOf:
+      - $ref: '#/components/schemas/Temperature'
+      - $ref: '#/components/schemas/Humidity'
+      - $ref: '#/components/schemas/Pm25'
+      - $ref: '#/components/schemas/Pm10'
+      - $ref: '#/components/schemas/Aqi'
+      example:
+        pm25: 159
+        pm10: 80
+        aqi: 90
+      title: All
