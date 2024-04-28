@@ -1,8 +1,10 @@
 import logging
+import sys
 
 import connexion
 from flask_testing import TestCase
 
+sys.path.append("../stub")
 from swagger_server.encoder import JSONEncoder
 
 
