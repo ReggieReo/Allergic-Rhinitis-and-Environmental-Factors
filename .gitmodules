@@ -1,0 +1,3 @@
+[submodule "allergie_visualisation"]
+	path = allergie_visualisation
+	url = https://github.com/ReggieReo/allergie_visualisation.git
