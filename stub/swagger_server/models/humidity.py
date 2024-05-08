@@ -1,5 +1,6 @@
 from datetime import date, datetime  # noqa: F401
 
+import numbers
 from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model import Model
@@ -18,6 +19,12 @@ class Humidity(Model):
         :param humidity: The humidity of this Humidity.  # noqa: E501
         :type humidity: int
         """
+        if not isinstance(humidity, numbers.Number):
+            raise TypeError
+
+        if humidity > 100 or humidity < 0:
+            raise ValueError
+
         self.openapi_types = {
             'humidity': int
         }
@@ -40,7 +47,7 @@ class Humidity(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def humidity(self) -> int:
+    def humidity(self): 
         """Gets the humidity of this Humidity.
 
 

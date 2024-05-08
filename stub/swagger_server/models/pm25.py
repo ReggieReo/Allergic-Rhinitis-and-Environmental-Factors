@@ -2,6 +2,7 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
+import numbers
 from swagger_server.models.base_model import Model
 from swagger_server import util
 
@@ -18,6 +19,13 @@ class Pm25(Model):
         :param pm25: The pm25 of this Pm25.  # noqa: E501
         :type pm25: int
         """
+
+        if not isinstance(pm25, numbers.Number):
+            raise TypeError
+
+        if pm25 < 0:
+            raise ValueError
+
         self.openapi_types = {
             'pm25': int
         }
