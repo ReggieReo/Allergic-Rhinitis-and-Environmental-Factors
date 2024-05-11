@@ -1,7 +1,9 @@
 openapi: 3.0.0
 info:
-  description: Test Test
-  title: Test Test
+  description: "This API provides historical environmental factors (temperature, humidity,\
+    \ aqi, pm10, and pm2.5) relationship to allergic rhinitis between 2024-04-15 to\
+    \ 2024-05-10."
+  title: Allergic Rhinitis and Environment
   version: 1.0.0
 servers:
 - url: /allergic-api/v1
@@ -17,7 +19,7 @@ paths:
                 $ref: '#/components/schemas/All'
           description: Success
       summary: "Return the average temperature, humidity, aqi, pm10 and pm25 when\
-        \ allergy flare-ups happened."
+        \ allergic rhinitis happened."
       x-openapi-router-controller: swagger_server.controllers.default_controller
   /average_aqi:
     get:
@@ -29,7 +31,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/Aqi'
           description: Success
-      summary: Return the average qai when allergy flare-ups happened.
+      summary: Return the average aqi when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /average_given_date/{date}:
+    get:
+      operationId: controller_get_average_given_date
+      parameters:
+      - explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllWithDateAndAllergic'
+          description: Success
+      summary: Given date in the parameter return average eviropment factor along
+        with does allergic rhinitis happen on that day.
       x-openapi-router-controller: swagger_server.controllers.default_controller
   /average_humid:
     get:
@@ -41,7 +64,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Humidity'
           description: Success
-      summary: Return the average humidity when allergy flare-ups happened.
+      summary: Return the average humidity when allergic rhinitis happened.
       x-openapi-router-controller: swagger_server.controllers.default_controller
   /average_pm10:
     get:
@@ -53,7 +76,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Pm10'
           description: Success
-      summary: Return the average pm10 when allergy flare-ups happened.
+      summary: Return the average pm10 when allergic rhinitis happened.
       x-openapi-router-controller: swagger_server.controllers.default_controller
   /average_pm25:
     get:
@@ -65,7 +88,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Pm25'
           description: Success
-      summary: Return the average pm25 when allergy flare-ups happened.
+      summary: Return the average pm25 when allergic rhinitis happened.
       x-openapi-router-controller: swagger_server.controllers.default_controller
   /average_temp:
     get:
@@ -77,7 +100,195 @@ paths:
               schema:
                 $ref: '#/components/schemas/Temperature'
           description: Success
-      summary: Return the average temperature when allergy flare-ups happened.
+      summary: Return the average temperature when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /max_all:
+    get:
+      operationId: controller_get_max_all
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/All'
+          description: Success
+      summary: "Return the maximum temperature, humidity, aqi, pm10 and pm25 when\
+        \ allergic rhinitis happened."
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /max_aqi:
+    get:
+      operationId: controller_get_max_aqi
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aqi'
+          description: Success
+      summary: Return the maximum qai when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /max_given_date/{date}:
+    get:
+      operationId: controller_get_max_given_date
+      parameters:
+      - explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllWithDateAndAllergic'
+          description: Success
+      summary: Given date in the parameter return maximum eviropment factor along
+        with does allergic rhinitis happen on that day.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /max_humid:
+    get:
+      operationId: controller_get_max_humidity
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Humidity'
+          description: Success
+      summary: Return the maximum humidity when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /max_pm10:
+    get:
+      operationId: controller_get_max_pm10
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm10'
+          description: Success
+      summary: Return the maximum pm10 when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /max_pm25:
+    get:
+      operationId: controller_get_max_pm25
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm25'
+          description: Success
+      summary: Return the maximum pm25 when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /max_temp:
+    get:
+      operationId: controller_get_max_temp
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+          description: Success
+      summary: Return the maximum temperature when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /min_all:
+    get:
+      operationId: controller_get_min_all
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/All'
+          description: Success
+      summary: "Return the minimum temperature, humidity, aqi, pm10 and pm25 when\
+        \ allergic rhinitis happened."
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /min_aqi:
+    get:
+      operationId: controller_get_min_aqi
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aqi'
+          description: Success
+      summary: Return the minimum qai when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /min_given_date/{date}:
+    get:
+      operationId: controller_get_min_given_date
+      parameters:
+      - explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllWithDateAndAllergic'
+          description: Success
+      summary: Given date in the parameter return minimum eviropment factor along
+        with does allergic rhinitis happen on that day.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /min_humid:
+    get:
+      operationId: controller_get_min_humidity
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Humidity'
+          description: Success
+      summary: Return the minimum humidity when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /min_pm10:
+    get:
+      operationId: controller_get_min_pm10
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm10'
+          description: Success
+      summary: Return the minimum pm10 when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /min_pm25:
+    get:
+      operationId: controller_get_min_pm25
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm25'
+          description: Success
+      summary: Return the minimum pm25 when allergic rhinitis happened.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /min_temp:
+    get:
+      operationId: controller_get_min_temp
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+          description: Success
+      summary: Return the minimum temperature when allergic rhinitis happened.
       x-openapi-router-controller: swagger_server.controllers.default_controller
 components:
   schemas:
@@ -134,7 +345,31 @@ components:
       - $ref: '#/components/schemas/Pm10'
       - $ref: '#/components/schemas/Aqi'
       example:
+        teperature: 30
+        humidity: 70
         pm25: 159
         pm10: 80
         aqi: 90
       title: All
+    AllWithDateAndAllergic:
+      allOf:
+      - $ref: '#/components/schemas/Temperature'
+      - $ref: '#/components/schemas/Humidity'
+      - $ref: '#/components/schemas/Pm25'
+      - $ref: '#/components/schemas/Pm10'
+      - $ref: '#/components/schemas/Aqi'
+      - properties:
+          allergic_rhinitis:
+            type: boolean
+          date:
+            type: string
+        type: object
+      example:
+        teperature: 30
+        humidity: 70
+        pm25: 159
+        pm10: 80
+        aqi: 90
+        date: 2024-05-09
+        allergic_rhinitis: true
+      title: AllWithDateAndAllergic

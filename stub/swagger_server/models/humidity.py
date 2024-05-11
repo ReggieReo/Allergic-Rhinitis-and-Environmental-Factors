@@ -1,8 +1,8 @@
 from datetime import date, datetime  # noqa: F401
 
-import numbers
 from typing import List, Dict  # noqa: F401
 
+import numbers
 from swagger_server.models.base_model import Model
 from swagger_server import util
 
@@ -47,7 +47,7 @@ class Humidity(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def humidity(self): 
+    def humidity(self) -> int:
         """Gets the humidity of this Humidity.
 
 

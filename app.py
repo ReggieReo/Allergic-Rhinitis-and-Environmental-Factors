@@ -28,8 +28,8 @@ from swagger_server import encoder
 def main():
     app = connexion.App(__name__, specification_dir='./openapi/')
     app.app.json_encoder = encoder.JSONEncoder
-    app.add_api('al-api.yaml',
-                arguments={'title': 'Test Test'},
+    app.add_api('allergic-api.yaml',
+                arguments={'title': 'Allergic Rhinitis and Environment'},
                 pythonic_params=True)
 
     app.run(port=8080, debug=True)

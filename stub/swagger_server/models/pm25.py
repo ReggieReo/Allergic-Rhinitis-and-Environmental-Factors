@@ -19,7 +19,6 @@ class Pm25(Model):
         :param pm25: The pm25 of this Pm25.  # noqa: E501
         :type pm25: int
         """
-
         if not isinstance(pm25, numbers.Number):
             raise TypeError
 

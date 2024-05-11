@@ -20,10 +20,10 @@ REQUIRES = [
 setup(
     name=NAME,
     version=VERSION,
-    description="Test Test",
+    description="Allergic Rhinitis and Environment",
     author_email="",
     url="",
-    keywords=["OpenAPI", "Test Test"],
+    keywords=["OpenAPI", "Allergic Rhinitis and Environment"],
     install_requires=REQUIRES,
     packages=find_packages(),
     package_data={'': ['openapi/openapi.yaml']},
@@ -31,7 +31,7 @@ setup(
     entry_points={
         'console_scripts': ['swagger_server=swagger_server.__main__:main']},
     long_description="""\
-    Test Test
+    This API provides historical environmental factors (temperature, humidity, aqi, pm10, and pm2.5) relationship to allergic rhinitis between 2024-04-15 to 2024-05-10.
     """
 )
 

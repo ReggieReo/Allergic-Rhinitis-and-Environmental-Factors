@@ -24,6 +24,7 @@ class Pm10(Model):
 
         if pm10 < 0:
             raise ValueError
+
         self.openapi_types = {
             'pm10': int
         }

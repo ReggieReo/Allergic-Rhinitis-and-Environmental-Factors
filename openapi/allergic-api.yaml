@@ -1,0 +1,336 @@
+openapi: 3.0.0
+info:
+  title: Allergic Rhinitis and Environment
+  description: >-
+   This API provides historical environmental factors (temperature, humidity, aqi, pm10, and pm2.5) relationship to allergic rhinitis between 2024-04-15 to 2024-05-10.
+  version: 1.0.0
+servers:
+  - url: /allergic-api/v1
+
+paths:
+  /average_temp:
+    get:
+      summary: Return the average temperature when allergic rhinitis happened.
+      operationId: controller.get_average_temp
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+  /average_humid:
+    get:
+      summary: Return the average humidity when allergic rhinitis happened.
+      operationId: controller.get_average_humidity
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Humidity'
+  /average_aqi:
+    get:
+      summary: Return the average qai when allergic rhinitis happened.
+      operationId: controller.get_average_aqi
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aqi'
+  /average_pm10:
+    get:
+      summary: Return the average pm10 when allergic rhinitis happened.
+      operationId: controller.get_average_pm10
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm10'
+  /average_pm25:
+    get:
+      summary: Return the average pm25 when allergic rhinitis happened.
+      operationId: controller.get_average_pm25
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm25'
+  /average_all:
+    get:
+      summary: Return the average temperature, humidity, aqi, pm10 and pm25 when allergic rhinitis happened.
+      operationId: controller.get_average_all
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/All'
+  /min_temp:
+    get:
+      summary: Return the minimum temperature when allergic rhinitis happened.
+      operationId: controller.get_min_temp
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+  /min_humid:
+    get:
+      summary: Return the minimum humidity when allergic rhinitis happened.
+      operationId: controller.get_min_humidity
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Humidity'
+  /min_aqi:
+    get:
+      summary: Return the minimum qai when allergic rhinitis happened.
+      operationId: controller.get_min_aqi
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aqi'
+  /min_pm10:
+    get:
+      summary: Return the minimum pm10 when allergic rhinitis happened.
+      operationId: controller.get_min_pm10
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm10'
+  /min_pm25:
+    get:
+      summary: Return the minimum pm25 when allergic rhinitis happened.
+      operationId: controller.get_min_pm25
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm25'
+  /min_all:
+    get:
+      summary: Return the minimum temperature, humidity, aqi, pm10 and pm25 when allergic rhinitis happened.
+      operationId: controller.get_min_all
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/All'
+  /max_temp:
+    get:
+      summary: Return the maximum temperature when allergic rhinitis happened.
+      operationId: controller.get_max_temp
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+  /max_humid:
+    get:
+      summary: Return the maximum humidity when allergic rhinitis happened.
+      operationId: controller.get_max_humidity
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Humidity'
+  /max_aqi:
+    get:
+      summary: Return the maximum qai when allergic rhinitis happened.
+      operationId: controller.get_max_aqi
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aqi'
+  /max_pm10:
+    get:
+      summary: Return the maximum pm10 when allergic rhinitis happened.
+      operationId: controller.get_max_pm10
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm10'
+  /max_pm25:
+    get:
+      summary: Return the maximum pm25 when allergic rhinitis happened.
+      operationId: controller.get_max_pm25
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pm25'
+  /max_all:
+    get:
+      summary: Return the maximum temperature, humidity, aqi, pm10 and pm25 when allergic rhinitis happened.
+      operationId: controller.get_max_all
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/All'
+  /average_given_date/{date}:
+    parameters:
+    - name: date
+      in: path
+      required: true
+      schema:
+        type : string
+    get:
+      summary: Given date in the parameter return average eviropment factor along with does allergic rhinitis happen on that day.
+      operationId: controller.get_average_given_date
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllWithDateAndAllergic'
+  /min_given_date/{date}:
+    parameters:
+    - name: date
+      in: path
+      required: true
+      schema:
+        type : string
+    get:
+      summary: Given date in the parameter return minimum eviropment factor along with does allergic rhinitis happen on that day.
+      operationId: controller.get_min_given_date
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllWithDateAndAllergic'
+  /max_given_date/{date}:
+    parameters:
+    - name: date
+      in: path
+      required: true
+      schema:
+        type : string
+    get:
+      summary: Given date in the parameter return maximum eviropment factor along with does allergic rhinitis happen on that day.
+      operationId: controller.get_max_given_date
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllWithDateAndAllergic'
+
+components:
+  schemas:
+    Temperature:
+      type: object
+      example:
+        temperature: 30
+      properties:
+        temperature:
+          title: temperature
+          type: number
+    Humidity:
+      type: object
+      example:
+        humidity: 70
+      properties:
+        humidity:
+          title: humidity
+          type: integer
+    Aqi:
+      type: object
+      example:
+        aqi: 90
+      properties:
+        aqi:
+          title: aqi
+          type: integer
+    Pm10:
+      type: object
+      example:
+        pm10: 80
+      properties:
+        pm10:
+          title: pm10
+          type: integer
+    Pm25:
+      type: object
+      example:
+        pm25: 159
+      properties:
+        pm25:
+          title: pm25
+          type: integer
+    All:
+      example:
+        teperature: 30
+        humidity: 70
+        pm25: 159
+        pm10: 80
+        aqi: 90
+      allOf:
+        - $ref: '#/components/schemas/Temperature'
+        - $ref: '#/components/schemas/Humidity'
+        - $ref: '#/components/schemas/Pm25'
+        - $ref: '#/components/schemas/Pm10'
+        - $ref: '#/components/schemas/Aqi'
+    AllWithDateAndAllergic:
+      example:
+        teperature: 30
+        humidity: 70
+        pm25: 159
+        pm10: 80
+        aqi: 90
+        date: "2024-05-09"
+        allergic_rhinitis: true
+      allOf:
+        - $ref: '#/components/schemas/Temperature'
+        - $ref: '#/components/schemas/Humidity'
+        - $ref: '#/components/schemas/Pm25'
+        - $ref: '#/components/schemas/Pm10'
+        - $ref: '#/components/schemas/Aqi'
+        - type: object
+          properties:
+            allergic_rhinitis:
+              type: boolean
+            date:
+              type: string
