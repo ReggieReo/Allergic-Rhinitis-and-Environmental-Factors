@@ -68,7 +68,7 @@ cd API-server
 ```
 python3 -m venv venv
 ```
-3. Activate virtual environment.
+3. Activate virtual environment.<br>
 Macos/Linux
 ```
 source venv/bin/activate
