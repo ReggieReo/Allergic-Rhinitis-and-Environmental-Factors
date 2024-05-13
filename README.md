@@ -66,12 +66,12 @@ cd API-server
 ```
 2. Create virtual environment.
 ```
-python -m venv venv
+python3 -m venv venv
 ```
 3. Activate virtual environment.
 Macos/Linux
 ```
-./venv/bin/activate
+source venv/bin/activate
 ```
 Windows
 ```
@@ -81,9 +81,11 @@ Windows
 ```
 pip install -r requirements.txt
 ```
-6. Edit config file
+6. Edit config file and save as config.py
 ```
-nvim config.py\ example or use your prefered text editor
+file is at ./config.py \example
+use your prefered text editor
+save as config.py
 ```
 7. Run API Server
 ```
