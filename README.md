@@ -77,21 +77,21 @@ Windows
 ```
 .\venv\Scripts\activate
 ```
-5. Install the required packages.
+4. Install the required packages.
 ```
 pip install -r requirements.txt
 ```
-6. Edit config file and save as config.py
+5. Edit config file and save as config.py
 ```
 file is at ./config.py \example
 use your prefered text editor
 save as config.py
 ```
-7. Run API Server
+6. Run API Server
 ```
 python3 app.py
 ```
-8. Open API specification or request API endpoint
+7. Open API specification or request API endpoint
 ```
 API specification
 
