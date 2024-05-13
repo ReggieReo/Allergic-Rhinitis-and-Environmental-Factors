@@ -1,0 +1,6 @@
+OPENAPI_STUB_DIR = 'stub'
+DB_HOST = "host url"
+DB_USER = "username"
+DB_PASSWD = "database password"
+DB_NAME = "database name"
+
